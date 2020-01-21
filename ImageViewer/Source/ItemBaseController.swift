@@ -145,17 +145,15 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
         doubleTapRecognizer.numberOfTapsRequired = 2
         scrollView.addGestureRecognizer(doubleTapRecognizer)
 
-        if toggleDecorationViewBySingleTap == true {
 
-            let singleTapRecognizer = UITapGestureRecognizer()
-
-            singleTapRecognizer.addTarget(self, action: #selector(scrollViewDidSingleTap))
-            singleTapRecognizer.numberOfTapsRequired = 1
-            scrollView.addGestureRecognizer(singleTapRecognizer)
-            singleTapRecognizer.require(toFail: doubleTapRecognizer)
-
-            self.singleTapRecognizer = singleTapRecognizer
-        }
+        let singleTapRecognizer = UITapGestureRecognizer()
+        
+        singleTapRecognizer.addTarget(self, action: #selector(scrollViewDidSingleTap))
+        singleTapRecognizer.numberOfTapsRequired = 1
+        scrollView.addGestureRecognizer(singleTapRecognizer)
+        singleTapRecognizer.require(toFail: doubleTapRecognizer)
+        
+        self.singleTapRecognizer = singleTapRecognizer
 
         if activityViewByLongPress == true {
 
@@ -265,8 +263,9 @@ open class ItemBaseController<T: UIView>: UIViewController, ItemController, UIGe
     }
 
     @objc func scrollViewDidSingleTap() {
+        let mode: GallerySingleTapMode = toggleDecorationViewBySingleTap ? .toggle : .close
 
-        self.delegate?.itemControllerDidSingleTap(self)
+        self.delegate?.itemControllerDidSingleTap(self, mode: mode)
     }
 
     @objc func scrollViewDidLongPress() {

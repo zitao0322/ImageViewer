@@ -182,6 +182,13 @@ public enum GalleryPagingMode {
     case carousel /// Pages through images from 0 to N and the again 0 to N in a loop, works both directions.
 }
 
+public enum GallerySingleTapMode {
+    
+    case close
+    
+    case toggle
+}
+
 public enum GalleryDisplacementStyle {
 
     case normal

@@ -18,7 +18,7 @@ public protocol ItemControllerDelegate: class {
 
     func itemControllerDidFinishSwipeToDismissSuccessfully()
 
-    func itemControllerDidSingleTap(_ controller: ItemController)
+    func itemControllerDidSingleTap(_ controller: ItemController, mode: GallerySingleTapMode)
     func itemControllerDidLongPress(_ controller: ItemController, in item: ItemView)
 
     func itemControllerWillAppear(_ controller: ItemController)
